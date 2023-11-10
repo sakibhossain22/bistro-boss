@@ -4,7 +4,6 @@ import SectionTitle from "../../Shared/SectionTiitle/SectionTitle";
 
 const Menu = () => {
     const [menus, setMenus] = useState([])
-    console.log(menus);
     useEffect(() => {
         fetch('menu.json')
             .then(res => res.json())

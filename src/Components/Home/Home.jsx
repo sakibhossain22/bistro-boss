@@ -4,6 +4,7 @@ import Contact from "./Contact/Contact";
 import FeaturedMenu from "./FeaturedMenu/FeaturedMenu";
 import Menu from "./Menu/Menu";
 import Slider from "./Slider/Slider";
+import Testimonial from "./TestImonial/Testimonial.Jsx";
 
 const Home = () => {
     return (
@@ -14,6 +15,7 @@ const Home = () => {
            <Menu></Menu>
            <Contact></Contact>
            <FeaturedMenu></FeaturedMenu>
+           <Testimonial></Testimonial>
         </div>
     );
 };
