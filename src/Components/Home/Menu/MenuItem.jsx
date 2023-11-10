@@ -10,7 +10,7 @@ const MenuItem = ({item}) => {
                     <h1 className="text-xl font-bold">{name}-------</h1>
                     <p>{recipe}</p>
                 </div>
-                <p className="font-bold">${price}</p>
+                <p className="font-bold text-yellow-400">${price}</p>
             </div>
         </div>
     );
