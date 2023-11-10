@@ -1,8 +1,13 @@
+import Banner from "./Banner/Banner";
+import ChefServIce from "./ChefService/ChefServIce";
+import Slider from "./Slider/Slider";
 
 const Home = () => {
     return (
         <div>
-            <h1>Home</h1>            
+           <Banner></Banner>
+           <Slider></Slider>
+           <ChefServIce></ChefServIce>
         </div>
     );
 };
