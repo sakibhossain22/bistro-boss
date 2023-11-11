@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import MainLayout from './Components/MainLayout/MainLayout';
 import Home from './Components/Home/Home';
+import OurMenu from './Components/OurMenu/OurMenu.Jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -15,9 +16,13 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home></Home>
-      }
+      },
     ]
   },
+  {
+    path : '/our-menu',
+    element : <OurMenu></OurMenu>
+  }
 ])
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

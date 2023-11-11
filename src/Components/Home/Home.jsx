@@ -11,7 +11,7 @@ const Home = () => {
         <div>
            <Banner></Banner>
            <Slider></Slider>
-           <ChefServIce></ChefServIce>
+           <ChefServIce heading='Bistro Boss' subHeading='Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, libero accusamus laborum deserunt ratione dolor officiis praesentium! Deserunt magni aperiam dolor eius dolore at, nihil iusto ducimus incidunt quibusdam nemo.'></ChefServIce>
            <Menu></Menu>
            <Contact></Contact>
            <FeaturedMenu></FeaturedMenu>
