@@ -8,6 +8,7 @@ import {
 import MainLayout from './Components/MainLayout/MainLayout';
 import Home from './Components/Home/Home';
 import OurMenu from './Components/OurMenu/OurMenu.Jsx';
+import OurShop from './Components/OurShop/OurShop';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
     path : '/our-menu',
     element : <OurMenu></OurMenu>
+  },
+  {
+    path : '/our-shop/:category',
+    element : <OurShop></OurShop>
   }
 ])
 ReactDOM.createRoot(document.getElementById('root')).render(

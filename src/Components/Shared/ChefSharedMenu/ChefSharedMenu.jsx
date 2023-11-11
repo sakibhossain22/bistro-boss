@@ -1,5 +1,6 @@
-import img from '../../../assets/home/chef-service.jpg'
-const ChefSharedMenu = ({ heading, subHeading }) => {
+/* eslint-disable react/prop-types */
+// import img from '../../../assets/home/chef-service.jpg'
+const ChefSharedMenu = ({ img, heading, subHeading }) => {
     return (
         <div className='my-10'>
             <div className='flex items-center justify-center' style={{ backgroundImage: `url(${img})`, backgroundSize: 'cover', backgroundPosition: 'center', height: '400px' }}>

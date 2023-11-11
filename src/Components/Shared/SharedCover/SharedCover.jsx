@@ -1,5 +1,6 @@
-import img from '../../../assets/menu/banner3.jpg'
-const SharedCover = ({header, subHeader}) => {
+/* eslint-disable react/prop-types */
+// import img from '../../../assets/menu/banner3.jpg'
+const SharedCover = ({header, subHeader,img}) => {
     return (
         <div>
             <div className="hero h-[500px]" style={{ backgroundImage: `url(${img})` }}>
