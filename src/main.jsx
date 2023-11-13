@@ -9,6 +9,7 @@ import MainLayout from './Components/MainLayout/MainLayout';
 import Home from './Components/Home/Home';
 import OurMenu from './Components/OurMenu/OurMenu.Jsx';
 import OurShop from './Components/OurShop/OurShop';
+import Login from './Components/Login/Login';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
   {
     path : '/our-shop/:category',
     element : <OurShop></OurShop>
+  },
+  {
+    path : '/login',
+    element : <Login/>
   }
 ])
 ReactDOM.createRoot(document.getElementById('root')).render(
