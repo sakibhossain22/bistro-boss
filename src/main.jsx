@@ -13,6 +13,12 @@ import Login from './Components/Login/Login';
 import Register from './Components/Register/Register';
 import AuthProvider from './Components/AuthProvider/AuthProvider';
 import {  QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import Dashboard from './Components/Dashboard/Dashboard/Dashboard';
+import Cart from './Components/Dashboard/Cart/Cart';
+import UserHome from './Components/Dashboard/UserHome/UserHome.jsX';
+import Reservation from './Components/Dashboard/Reservation/Reservation';
+import PaymentHistory from './Components/Dashboard/PaymentHistory/PaymentHistory';
+import AddReview from './Components/Dashboard/AddReview/AddReview';
 const queryClient = new QueryClient()
 const router = createBrowserRouter([
   {
@@ -40,6 +46,34 @@ const router = createBrowserRouter([
   {
     path: '/register',
     element: <Register></Register>
+  },
+  {
+    path : '/dashboard',
+    element : <Dashboard></Dashboard>,
+    children : [
+      {
+        path : 'my-cart',
+        element : <Cart></Cart>
+      },
+      {
+        path : 'user-home',
+        element : <UserHome></UserHome>
+
+      },
+      {
+        path : 'reservation',
+        element : <Reservation></Reservation>
+      },
+      {
+        path : 'payment-history',
+        element : <PaymentHistory></PaymentHistory>
+      },
+      {
+        path : 'add-review',
+        element : <AddReview></AddReview>
+      }
+
+    ]
   }
 ])
 ReactDOM.createRoot(document.getElementById('root')).render(
