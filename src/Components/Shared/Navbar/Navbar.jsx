@@ -26,10 +26,12 @@ const Navbar = () => {
         {
             user ? <button onClick={handleLogOut}>Log Out</button> : <NavLink to='/login'><li>Login</li></NavLink>
         }
-        <button className="flex items-center justify-center gap-2">
-            <FaShoppingCart></FaShoppingCart>
-            <p  className="bg-pink-500 px-2">{data?.length}+</p>
-        </button>
+        <NavLink to='/dashboard/my-cart'>
+            <button className="flex items-center justify-center gap-2">
+                <FaShoppingCart></FaShoppingCart>
+                <p className="bg-pink-500 px-2">{data?.length}+</p>
+            </button>
+        </NavLink>
     </>
     return (
         <div className="navbar bg-base-100 fixed bg-opacity-40 max-w-7xl mx-auto z-10 text-white">

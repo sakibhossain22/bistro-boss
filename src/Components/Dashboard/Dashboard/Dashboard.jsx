@@ -12,31 +12,54 @@ const Dashboard = () => {
                             <p className="text-xl">Restaurant</p>
                         </div>
                         <div className="space-y-4">
-                            <NavLink to='user-home' className='flex items-center gap-3'>
-                                <FaHome className="text-2xl"></FaHome>
-                                <span className="text-xl">User Home</span>
+                            <NavLink className={({ isActive, isPending }) =>
+                                isPending ? "pending" : isActive ? "text-white" : ""
+                            } to='/dashboard/user-home'>
+                                <div className='flex items-center gap-3'>
+                                    <FaHome className="text-2xl"></FaHome>
+                                    <span className="text-xl">User Home</span>
+                                </div>
                             </NavLink>
-                            <NavLink to='reservation' className='flex items-center gap-3'>
-                                <FaCalendar className="text-2xl"></FaCalendar>
-                                <span className="text-xl">Reservation</span>
+                            <NavLink className={({ isActive, isPending }) =>
+                                isPending ? "pending" : isActive ? "text-white" : ""
+                            } to='/dashboard/reservation' >
+                                <div className='flex items-center gap-3'>
+                                    <FaCalendar className="text-2xl"></FaCalendar>
+                                    <span className="text-xl">Reservation</span>
+                                </div>
                             </NavLink>
-                            <NavLink to='payment-history' className='flex items-center gap-3'>
-                                <FaPaypal className="text-2xl"></FaPaypal>
-                                <span className="text-xl">Payment History</span>
+                            <NavLink className={({ isActive, isPending }) =>
+                                isPending ? "pending" : isActive ? "text-white" : ""
+                            } to='/dashboard/payment-history'>
+                                <div className='flex items-center gap-3'>
+                                    <FaPaypal className="text-2xl"></FaPaypal>
+                                    <span className="text-xl">Payment History</span>
+                                </div>
                             </NavLink>
-                            <NavLink to='add-review' className='flex items-center gap-3'>
-                                <FaStar className="text-2xl"></FaStar>
-                                <span className="text-xl">Add Review</span>
+                            <NavLink className={({ isActive, isPending }) =>
+                                isPending ? "pending" : isActive ? "text-white" : ""
+                            } to='/dashboard/add-review' >
+                                <div className='flex items-center gap-3'>
+                                    <FaStar className="text-2xl"></FaStar>
+                                    <span className="text-xl">Add Review</span>
+                                </div>
                             </NavLink>
-                            <NavLink to='my-cart' className='flex items-center gap-3'>
-                                <FaShoppingCart className="text-2xl"></FaShoppingCart>
-                                <span className="text-xl">My Cart</span>
+                            <NavLink className={({ isActive, isPending }) =>
+                                isPending ? "pending" : isActive ? "text-white" : ""
+                            } to='/dashboard/my-cart' >
+                                <div className='flex items-center gap-3'>
+                                    <FaShoppingCart className="text-2xl"></FaShoppingCart>
+                                    <span className="text-xl">My Cart</span>
+                                </div>
                             </NavLink>
+                            <div className="divider"></div>
                         </div>
                     </div>
                 </div>
-                <div className="col-span-9 bg-yellow-600">
-                    <Outlet></Outlet>
+                <div className="col-span-9 bg-[#f6f6f6]">
+                    <div className="my-5">
+                        <Outlet></Outlet>
+                    </div>
                 </div>
             </div>
         </div>

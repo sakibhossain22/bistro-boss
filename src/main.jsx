@@ -52,24 +52,24 @@ const router = createBrowserRouter([
     element : <Dashboard></Dashboard>,
     children : [
       {
-        path : 'my-cart',
+        path : '/dashboard/my-cart',
         element : <Cart></Cart>
       },
       {
-        path : 'user-home',
+        path : '/dashboard/user-home',
         element : <UserHome></UserHome>
 
       },
       {
-        path : 'reservation',
+        path : '/dashboard/reservation',
         element : <Reservation></Reservation>
       },
       {
-        path : 'payment-history',
+        path : '/dashboard/payment-history',
         element : <PaymentHistory></PaymentHistory>
       },
       {
-        path : 'add-review',
+        path : '/dashboard/add-review',
         element : <AddReview></AddReview>
       }
 
