@@ -1,54 +1,78 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
+import { useContext, useEffect, useRef, useState } from 'react';
+import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
+import img from '../.../../../assets/authentication2 1.png'
+import { AuthContext } from '../AuthProvider/AuthProvider';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 const Login = () => {
+    const location = useLocation()
+    console.log(location);
+    const navigate = useNavigate()
+    const [error, setError] = useState(null)
     useEffect(() => {
         loadCaptchaEnginge(6)
     }, [])
-    const [disabled, setDisabled] = useState(true)
     const value = useRef()
+    const { loginWithEmail } = useContext(AuthContext)
     const validate = () => {
-     const capcha = value.current.value;
-     if(validateCaptcha(capcha)){
-        console.log({success : 'verify captcha'});
-        setDisabled(false)
-     }
-     else {
-        return console.error({error : 'captcha not matched'});
-     }
+        const capcha = value.current.value;
+        if (validateCaptcha(capcha)) {
+            console.log({ success: 'verify captcha' });
+        }
+        else {
+            return setError('Captcha Does NOT matched');
+        }
     }
+    const handleLogin = (e) => {
+        e.preventDefault()
+        const form = e.target
+        const email = form.email.value
+        const password = form.password.value
+        loginWithEmail(email, password)
+            .then(result => {
+                console.log(result.user);
+               navigate(location ? location?.state : '/')
+            })
+            .catch(error => {
+                console.log(error.message);
+            })
+    }
+
     return (
         <div>
-            <div className="hero min-h-screen bg-base-200">
-                <div className="hero-content flex-col lg:flex-row-reverse">
+            <div className="hero min-h-screen ">
+                <div className="hero-content flex-col lg:flex-row-reverse shadow-2xl border">
                     <div className="text-center lg:text-left">
-                        <h1 className="text-5xl font-bold">Login now!</h1>
-                        <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+                        <img src={img} alt="" />
                     </div>
-                    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                        <form className="card-body">
+                    <div className="card flex-shrink-0 w-full max-w-sm bg-base-100">
+                        <form onSubmit={handleLogin} className="card-body">
+                            <h1 className='text-center font-bold text-2xl'>Login</h1>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
-                                <input type="email" placeholder="email" className="input input-bordered" required />
+                                <input name='email' type="email" placeholder="email" className="input input-bordered" required />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Password</span>
+                                </label>
+                                <input name='password' type="password" placeholder="password" className="input input-bordered" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <LoadCanvasTemplate></LoadCanvasTemplate>
                                 </label>
                                 <input ref={value} type="text" placeholder="captcha" className="input input-bordered" required />
-                                <button onClick={validate} className="btn w-full my-2">Validate</button>
+                                <button onClick={validate} className="btn w-full my-2">Login</button>
                             </div>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Password</span>
-                                </label>
-                                <input type="password" placeholder="password" className="input input-bordered" required />
-                            </div>
-                            <div className="form-control mt-6">
-                                <input disabled={disabled} className='btn btn-success' type="submit" value="Login" />
-                            </div>
+                            {
+                                error && <p>{error}</p>
+                            }
                         </form>
+                        <div>
+                            <button className='btn btn-success w-full'>Google</button>
+                        </div>
                     </div>
                 </div>
             </div>
