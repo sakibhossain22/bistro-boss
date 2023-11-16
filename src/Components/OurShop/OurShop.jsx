@@ -7,13 +7,23 @@ import 'react-tabs/style/react-tabs.css';
 import { useContext, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
+import axios from "axios";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../AxiosSecure/useAxiosSecure";
+import useCart from "../useCart/useCart";
+
+
+
+
+
 const OurShop = () => {
+    const [,refetch] = useCart()
     const categories = ['salad', 'pizza', 'soup', 'desserts', 'drinks']
     const { category } = useParams()
     const initialIndex = categories.indexOf(category)
     const [menu] = useMenu()
     const [tabIndex, setTabIndex] = useState(initialIndex);
-    const {pathname} = useLocation()
+    const { pathname } = useLocation()
     console.log(pathname);
     const navigate = useNavigate()
     const dessert = menu.filter(menu => menu.category === 'dessert')
@@ -22,6 +32,7 @@ const OurShop = () => {
     const soup = menu.filter(menu => menu.category === 'soup')
     const drinks = menu.filter(menu => menu.category === 'drinks')
     const { user } = useContext(AuthContext)
+    const axiosSecure = useAxiosSecure()
     const handleOrder = (food) => {
         if (user) {
             const category = food.category
@@ -31,10 +42,22 @@ const OurShop = () => {
             const recipe = food.recipe
             const emaiL = user?.email
             const info = { category, image, name, price, recipe, emaiL }
-            console.log(info)
+            axiosSecure.post('/cart', info, { withCredentials: true })
+                .then(res => {
+                    console.log(res.data);
+                    if (res.data.insertedId) {
+                        Swal.fire({
+                            icon: "success",
+                            title: "Product Added On Cart Successfully",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        refetch()
+                    }
+                })
         }
         else {
-            navigate('/login', {state : pathname})
+            navigate('/login', { state: pathname })
         }
 
     }
