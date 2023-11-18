@@ -19,6 +19,7 @@ import UserHome from './Components/Dashboard/UserHome/UserHome.jsX';
 import Reservation from './Components/Dashboard/Reservation/Reservation';
 import PaymentHistory from './Components/Dashboard/PaymentHistory/PaymentHistory';
 import AddReview from './Components/Dashboard/AddReview/AddReview';
+import AllUsers from './Components/Dashboard/Dashboard/Admin/AllUsers/AllUsers';
 const queryClient = new QueryClient()
 const router = createBrowserRouter([
   {
@@ -71,6 +72,10 @@ const router = createBrowserRouter([
       {
         path : '/dashboard/add-review',
         element : <AddReview></AddReview>
+      },
+      {
+        path : '/dashboard/all-users',
+        element : <AllUsers></AllUsers>
       }
 
     ]

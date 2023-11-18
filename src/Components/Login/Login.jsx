@@ -2,17 +2,23 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import img from '../.../../../assets/authentication2 1.png'
 import { AuthContext } from '../AuthProvider/AuthProvider';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import useAxiosSecure from '../AxiosSecure/useAxiosSecure';
 const Login = () => {
     const location = useLocation()
     console.log(location);
     const navigate = useNavigate()
     const [error, setError] = useState(null)
+    const axiosSecure = useAxiosSecure()
+
+
+
+
     useEffect(() => {
         loadCaptchaEnginge(6)
     }, [])
     const value = useRef()
-    const { loginWithEmail } = useContext(AuthContext)
+    const { loginWithEmail, googleLogin } = useContext(AuthContext)
     const validate = () => {
         const capcha = value.current.value;
         if (validateCaptcha(capcha)) {
@@ -30,7 +36,20 @@ const Login = () => {
         loginWithEmail(email, password)
             .then(result => {
                 console.log(result.user);
-               navigate(location ? location?.state : '/')
+                navigate(location ? location?.state : '/')
+            })
+            .catch(error => {
+                console.log(error.message);
+            })
+    }
+    const handleGoogleLogin = () => {
+        googleLogin()
+            .then(result => {
+                console.log(result.user);
+                axiosSecure.post('/user', { email: result?.user?.email, name: result?.user?.displayName })
+                    .then(res => console.log(res.data))
+                    
+                navigate(location ? location?.state : '/')
             })
             .catch(error => {
                 console.log(error.message);
@@ -71,7 +90,7 @@ const Login = () => {
                             }
                         </form>
                         <div>
-                            <button className='btn btn-success w-full'>Google</button>
+                            <button onClick={handleGoogleLogin} className='btn btn-success w-full'>Google</button>
                         </div>
                     </div>
                 </div>

@@ -1,8 +1,10 @@
 import { useContext } from 'react';
 import img from '../.../../../assets/authentication2 1.png'
 import { AuthContext } from '../AuthProvider/AuthProvider';
+import useAxiosSecure from '../AxiosSecure/useAxiosSecure';
 
 const Register = () => {
+    const axiosSecure = useAxiosSecure()
     const { registerWithEmail } = useContext(AuthContext)
     const handleRegister = e => {
         e.preventDefault()
@@ -15,11 +17,12 @@ const Register = () => {
         registerWithEmail(email, password)
             .then(result => {
                 console.log(result.user);
+                axiosSecure.post('/user',{email : email, name : name, password : password})
+                .then(res => console.log(res.data))
             })
             .catch(error => {
                 console.log(error.message);
             })
-        console.log(info);
     }
     return (
         <div>
