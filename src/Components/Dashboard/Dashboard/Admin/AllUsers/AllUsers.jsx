@@ -3,18 +3,21 @@ import { FaTrashAlt, FaUser } from "react-icons/fa";
 import SectionTitle from "../../../../Shared/SectionTiitle/SectionTitle";
 import { useQuery } from '@tanstack/react-query'
 import useAxiosSecure from "../../../../AxiosSecure/useAxiosSecure";
+import { useContext } from "react";
+import { AuthContext } from "../../../../AuthProvider/AuthProvider";
 
 const AllUsers = () => {
     const axiosSecure = useAxiosSecure()
-    const { isLoading, refetch, error, data } = useQuery({
+    const {user} = useContext(AuthContext)
+    const { isLoading, refetch, error, data = [] } = useQuery({
         queryKey: ['repoData'],
         queryFn: () =>
-            axiosSecure.get('/users')
+            axiosSecure.get(`/users/${user?.email}`)
                 .then(res => {
                     return res.data
                 })
     })
-    console.log(data);
+    // console.log(data);
     const handleRole = (id) => {
         Swal.fire({
             title: "Are you sure?",
@@ -74,8 +77,7 @@ const AllUsers = () => {
             <SectionTitle heading='How Many' subHeading='MANAGE ALL USERS'></SectionTitle>
             <div className="bg-white mx-10 px-5 py-6 rounded">
                 <div className="flex items-center justify-between my-4">
-                    <h1 className="text-3xl">Total Booking :</h1>
-                    <h1 className="text-3xl">Total Price : $ </h1>
+                    <h1 className="text-3xl">Total User : {data.length}</h1>
                     <button className="bg-[#D1A054] px-6 rounded text-white py-2">Pay</button>
                 </div>
                 <div>

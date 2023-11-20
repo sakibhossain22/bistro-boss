@@ -12,7 +12,7 @@ import OurShop from './Components/OurShop/OurShop';
 import Login from './Components/Login/Login';
 import Register from './Components/Register/Register';
 import AuthProvider from './Components/AuthProvider/AuthProvider';
-import {  QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import Dashboard from './Components/Dashboard/Dashboard/Dashboard';
 import Cart from './Components/Dashboard/Cart/Cart';
 import UserHome from './Components/Dashboard/UserHome/UserHome.jsX';
@@ -20,6 +20,8 @@ import Reservation from './Components/Dashboard/Reservation/Reservation';
 import PaymentHistory from './Components/Dashboard/PaymentHistory/PaymentHistory';
 import AddReview from './Components/Dashboard/AddReview/AddReview';
 import AllUsers from './Components/Dashboard/Dashboard/Admin/AllUsers/AllUsers';
+import AdminPrivate from './Components/Dashboard/Dashboard/Admin/AdminPrivate/AdminPrivate';
+import ManageItems from './Components/Dashboard/ManageItems/ManageItems';
 const queryClient = new QueryClient()
 const router = createBrowserRouter([
   {
@@ -49,33 +51,33 @@ const router = createBrowserRouter([
     element: <Register></Register>
   },
   {
-    path : '/dashboard',
-    element : <Dashboard></Dashboard>,
-    children : [
+    path: '/dashboard',
+    element: <Dashboard></Dashboard>,
+    children: [
       {
-        path : '/dashboard/my-cart',
-        element : <Cart></Cart>
+        path: '/dashboard/my-cart',
+        element: <Cart></Cart>
       },
       {
-        path : '/dashboard/user-home',
-        element : <UserHome></UserHome>
+        path: '/dashboard/user-home',
+        element: <UserHome></UserHome>
 
       },
       {
-        path : '/dashboard/reservation',
-        element : <Reservation></Reservation>
+        path: '/dashboard/reservation',
+        element: <AdminPrivate><Reservation></Reservation></AdminPrivate>
       },
       {
-        path : '/dashboard/payment-history',
-        element : <PaymentHistory></PaymentHistory>
+        path: '/dashboard/payment-history',
+        element: <ManageItems></ManageItems>
       },
       {
-        path : '/dashboard/add-review',
-        element : <AddReview></AddReview>
+        path: '/dashboard/add-review',
+        element: <AddReview></AddReview>
       },
       {
-        path : '/dashboard/all-users',
-        element : <AllUsers></AllUsers>
+        path: '/dashboard/all-users',
+        element: <AdminPrivate><AllUsers></AllUsers></AdminPrivate>
       }
 
     ]

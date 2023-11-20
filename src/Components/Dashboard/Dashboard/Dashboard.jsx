@@ -3,11 +3,9 @@ import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "./Admin/useAdmin";
 
 const Dashboard = () => {
-
-    const [isAdmin] = useAdmin()
-
-
     
+    const [isAdmin] = useAdmin()
+    console.log(isAdmin);
     return (
         <div>
             <div className="grid grid-cols-12 gap-5 h-screen">
