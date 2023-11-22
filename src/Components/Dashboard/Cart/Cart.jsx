@@ -3,6 +3,7 @@ import SectionTitle from "../../Shared/SectionTiitle/SectionTitle";
 import useCart from "../../useCart/useCart";
 import { FaTrashAlt } from "react-icons/fa";
 import useAxiosSecure from "../../AxiosSecure/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
     const [cart , refetch] = useCart()
@@ -42,7 +43,7 @@ const Cart = () => {
                 <div className="flex items-center justify-between my-4">
                     <h1 className="text-3xl">Total Booking : {cart?.length}</h1>
                     <h1 className="text-3xl">Total Price : $ {totalPrice}</h1>
-                    <button className="bg-[#D1A054] px-6 rounded text-white py-2">Pay</button>
+                    <Link to='/dashboard/reservation'><button className="bg-[#D1A054] px-6 rounded text-white py-2">Pay</button></Link>
                 </div>
                 <div>
                     <div className="overflow-x-auto">

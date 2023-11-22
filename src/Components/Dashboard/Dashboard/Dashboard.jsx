@@ -4,8 +4,9 @@ import useAdmin from "./Admin/useAdmin";
 
 const Dashboard = () => {
     
-    const [isAdmin] = useAdmin()
+    const [isAdmin, isAdminLoading] = useAdmin()
     console.log(isAdmin);
+    if(isAdminLoading) return <p>loading ....</p>
     return (
         <div>
             <div className="grid grid-cols-12 gap-5 h-screen">
@@ -28,7 +29,7 @@ const Dashboard = () => {
                                     </NavLink>
                                     <NavLink className={({ isActive, isPending }) =>
                                         isPending ? "pending" : isActive ? "text-white" : ""
-                                    } to='/dashboard/reservation' >
+                                    } to='/dashboard/add-item' >
                                         <div className='flex items-center gap-3'>
                                             <FaCalendar className="text-2xl"></FaCalendar>
                                             <span className="text-xl">Add Items</span>

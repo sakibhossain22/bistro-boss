@@ -16,12 +16,14 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import Dashboard from './Components/Dashboard/Dashboard/Dashboard';
 import Cart from './Components/Dashboard/Cart/Cart';
 import UserHome from './Components/Dashboard/UserHome/UserHome.jsX';
-import Reservation from './Components/Dashboard/Reservation/Reservation';
 import PaymentHistory from './Components/Dashboard/PaymentHistory/PaymentHistory';
 import AddReview from './Components/Dashboard/AddReview/AddReview';
 import AllUsers from './Components/Dashboard/Dashboard/Admin/AllUsers/AllUsers';
 import AdminPrivate from './Components/Dashboard/Dashboard/Admin/AdminPrivate/AdminPrivate';
-import ManageItems from './Components/Dashboard/ManageItems/ManageItems';
+import UpdateItem from './Components/Dashboard/UpdateItem/UpdateItem';
+import Payment from './Components/Payment/Payment';
+import AddItem from './Components/Dashboard/AddItem/AddItem';
+import AdminHome from './Components/Dashboard/Dashboard/Admin/AdminHome/AdminHome';
 const queryClient = new QueryClient()
 const router = createBrowserRouter([
   {
@@ -37,6 +39,10 @@ const router = createBrowserRouter([
   {
     path: '/our-menu',
     element: <OurMenu></OurMenu>
+  },
+  {
+    path : '/payment',
+    element : <Payment></Payment>
   },
   {
     path: '/our-shop/:category',
@@ -64,20 +70,34 @@ const router = createBrowserRouter([
 
       },
       {
+        path: '/dashboard/admin-home',
+        element: <AdminHome></AdminHome>
+
+      },
+      {
         path: '/dashboard/reservation',
-        element: <AdminPrivate><Reservation></Reservation></AdminPrivate>
+        element: <Payment></Payment>
       },
       {
         path: '/dashboard/payment-history',
-        element: <ManageItems></ManageItems>
+        element: <PaymentHistory></PaymentHistory>
       },
       {
         path: '/dashboard/add-review',
         element: <AddReview></AddReview>
       },
       {
+        path: '/dashboard/add-item',
+        element: <AddItem></AddItem>
+      },
+      {
         path: '/dashboard/all-users',
         element: <AdminPrivate><AllUsers></AllUsers></AdminPrivate>
+      },
+      {
+        path : '/dashboard/update/:id',
+        element : <UpdateItem></UpdateItem>,
+        loader : ({params}) => fetch(`http://localhost:5000/singlemenu/${params.id}`)
       }
 
     ]

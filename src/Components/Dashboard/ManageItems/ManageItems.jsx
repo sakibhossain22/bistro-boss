@@ -3,11 +3,11 @@ import useMenuItem from "../../useMenu/useMenuItem";
 import SectionTitle from "../../Shared/SectionTiitle/SectionTitle";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../AxiosSecure/useAxiosSecure";
+import { Link } from "react-router-dom";
 const ManageItems = () => {
     const axiosSecure = useAxiosSecure()
     const { data, refetch } = useMenuItem()
     const handleDelete = (id) => {
-        console.log(id);
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -79,9 +79,11 @@ const ManageItems = () => {
                                                 </td>
 
                                                 <td className="font-bold">
-                                                    <button className="bg-[#D1A054] text-white rounded px-4 py-2">
-                                                        <FaPen></FaPen>
-                                                    </button>
+                                                    <Link to={`/dashboard/update/${item._id}`}>
+                                                        <button className="bg-[#D1A054] text-white rounded px-4 py-2">
+                                                            <FaPen></FaPen>
+                                                        </button>
+                                                    </Link>
                                                 </td>
                                                 <th>
                                                     <button onClick={() => handleDelete(item._id)} className="bg-[#B91C1C] px-4 rounded py-2">
